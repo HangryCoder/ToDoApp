@@ -117,7 +117,18 @@ public class ToDoAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                 }
                 return false;
             });
+
+            checkBox.setOnClickListener(view -> {
+                if (checkBox.isChecked()) {
+                    if (toDoCallBack != null) {
+                        toDoCallBack.markImportant(getAdapterPosition(), false);
+                    }
+                } else {
+                    if (toDoCallBack != null) {
+                        toDoCallBack.markImportant(getAdapterPosition(), true);
+                    }
+                }
+            });
         }
     }
-
 }

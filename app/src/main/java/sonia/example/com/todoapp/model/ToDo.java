@@ -10,7 +10,7 @@ import android.arch.persistence.room.PrimaryKey;
 @Entity
 public class ToDo {
 
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
     int id;
     String title, content;
     boolean isImportant = false, isHeader = false;

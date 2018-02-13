@@ -8,4 +8,6 @@ public interface ToDoCallBack {
     void editTask(int position);
 
     void deleteTask(int position);
+
+    void markImportant(int position, boolean isChecked);
 }
