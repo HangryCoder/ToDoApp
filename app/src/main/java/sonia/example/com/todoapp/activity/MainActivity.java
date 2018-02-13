@@ -1,8 +1,6 @@
 package sonia.example.com.todoapp.activity;
 
 import android.app.ProgressDialog;
-import android.arch.persistence.room.Room;
-import android.content.DialogInterface;
 import android.os.AsyncTask;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AlertDialog;
@@ -20,7 +18,6 @@ import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.internal.Utils;
 import sonia.example.com.todoapp.R;
 import sonia.example.com.todoapp.Room.AppDatabase;
 import sonia.example.com.todoapp.adapter.ToDoAdapter;
