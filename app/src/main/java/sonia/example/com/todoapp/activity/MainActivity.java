@@ -37,7 +37,6 @@ public class MainActivity extends AppCompatActivity implements ToDoCallBack {
     RecyclerView.LayoutManager layoutManager;
     ToDoAdapter toDoAdapter;
     ArrayList<ToDo> toDoArrayList = new ArrayList<>();
-    private AppDatabase appDatabase;
     private ProgressDialog progressDialog;
 
     @Override
@@ -49,8 +48,6 @@ public class MainActivity extends AppCompatActivity implements ToDoCallBack {
 
         toDoArrayList.clear();
 
-        //Initializing AppDatabase Room
-        appDatabase = Room.databaseBuilder(this, AppDatabase.class, "ToDoDB").build();
         progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("Please Wait, Loading..");
         progressDialog.setCanceledOnTouchOutside(false);
@@ -176,7 +173,11 @@ public class MainActivity extends AppCompatActivity implements ToDoCallBack {
         @Override
         protected Void doInBackground(Void... voids) {
 
-            toDoArrayList = (ArrayList<ToDo>) appDatabase.toDoDao().getAllTasks();
+            toDoArrayList = (ArrayList<ToDo>) AppDatabase
+                    .getInstance(getApplicationContext())
+                    .toDoDao()
+                    .getAllTasks();
+
             for (int i = 0; i < toDoArrayList.size(); i++) {
                 Log.e(TAG, "toDoList " + toDoArrayList.get(i).getTitle());
             }
@@ -220,10 +221,16 @@ public class MainActivity extends AppCompatActivity implements ToDoCallBack {
         @Override
         protected Void doInBackground(Void... voids) {
             if (isEditType) {
-                appDatabase.toDoDao().updateNewTask(toDo);
+                AppDatabase
+                        .getInstance(getApplicationContext())
+                        .toDoDao()
+                        .updateNewTask(toDo);
                 toDoArrayList.set(position, toDo);
             } else {
-                appDatabase.toDoDao().addANewTask(toDo);
+                AppDatabase
+                        .getInstance(getApplicationContext())
+                        .toDoDao()
+                        .addANewTask(toDo);
                 toDoArrayList.add(toDo);
             }
             return null;
@@ -265,7 +272,10 @@ public class MainActivity extends AppCompatActivity implements ToDoCallBack {
         @Override
         protected Void doInBackground(Void... voids) {
 
-            appDatabase.toDoDao().deleteANewTask(toDo);
+            AppDatabase
+                    .getInstance(getApplicationContext())
+                    .toDoDao()
+                    .deleteANewTask(toDo);
             toDoArrayList.remove(toDo);
 
             return null;
