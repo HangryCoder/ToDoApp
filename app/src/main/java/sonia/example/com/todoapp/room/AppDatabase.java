@@ -1,4 +1,4 @@
-package sonia.example.com.todoapp.Room;
+package sonia.example.com.todoapp.room;
 
 import android.arch.persistence.room.Database;
 import android.arch.persistence.room.Room;

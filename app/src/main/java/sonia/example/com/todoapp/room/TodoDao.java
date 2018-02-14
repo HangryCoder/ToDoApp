@@ -1,5 +1,7 @@
-package sonia.example.com.todoapp.Room;
+package sonia.example.com.todoapp.room;
 
+import android.arch.lifecycle.LiveData;
+import android.arch.lifecycle.MutableLiveData;
 import android.arch.persistence.room.Dao;
 import android.arch.persistence.room.Delete;
 import android.arch.persistence.room.Insert;
@@ -19,7 +21,7 @@ import sonia.example.com.todoapp.model.ToDo;
 public interface TodoDao {
 
     @Query("SELECT * FROM ToDo")
-    List<ToDo> getAllTasks();
+    LiveData<List<ToDo>> getAllTasks();
 
     @Insert
     void addANewTask(ToDo toDo);

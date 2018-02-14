@@ -31,9 +31,8 @@ public class ToDoAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private ArrayList<ToDo> toDoArrayList = new ArrayList<>();
     private ToDoCallBack toDoCallBack;
 
-    public ToDoAdapter(MainActivity mainActivity, ArrayList<ToDo> toDoArrayList, ToDoCallBack toDoCallBack) {
+    public ToDoAdapter(MainActivity mainActivity, ToDoCallBack toDoCallBack) {
         this.context = mainActivity;
-        this.toDoArrayList = toDoArrayList;
         this.toDoCallBack = toDoCallBack;
     }
 
@@ -80,6 +79,11 @@ public class ToDoAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         } else {
             return TASK_ITEM;
         }
+    }
+
+    public ArrayList<ToDo> updateToDoList(ArrayList<ToDo> toDoArrayList) {
+        this.toDoArrayList = toDoArrayList;
+        return this.toDoArrayList;
     }
 
     public class HeaderHolder extends RecyclerView.ViewHolder {
